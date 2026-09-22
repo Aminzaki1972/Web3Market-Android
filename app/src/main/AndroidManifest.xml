@@ -6,6 +6,8 @@
     <application
         android:allowBackup="false"
         android:label="Web3Market"
+        android:icon="@drawable/web3market_icon"
+        android:roundIcon="@drawable/web3market_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Web3Market">
 
