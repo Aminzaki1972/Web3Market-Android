@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android Releases
 
 on:
   workflow_dispatch:
@@ -27,8 +27,26 @@ jobs:
       - name: Build debug APK
         run: gradle assembleDebug --no-daemon
 
-      - name: Upload APK
+      - name: Build release APK
+        run: gradle assembleRelease --no-daemon
+
+      - name: Build release AAB
+        run: gradle bundleRelease --no-daemon
+
+      - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
           name: Web3Market-Android-debug
           path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload release APK (unsigned)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Web3Market-Android-release-unsigned
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+      - name: Upload release AAB (unsigned)
+        uses: actions/upload-artifact@v4
+        with:
+          name: Web3Market-Android-release-aab-unsigned
+          path: app/build/outputs/bundle/release/app-release.aab
