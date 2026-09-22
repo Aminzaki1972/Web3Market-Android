@@ -47,6 +47,14 @@ jobs:
       - name: Build release AAB
         run: gradle bundleRelease --no-daemon
 
+      - name: Verify release APK is signed
+        run: |
+          $ANDROID_HOME/build-tools/35.0.0/apksigner verify --verbose app/build/outputs/apk/release/app-release.apk
+
+      - name: Verify release AAB exists
+        run: |
+          test -s app/build/outputs/bundle/release/app-release.aab
+
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
